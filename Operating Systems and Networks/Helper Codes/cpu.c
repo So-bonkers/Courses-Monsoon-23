@@ -3,6 +3,17 @@
 #include <sys/time.h>
 #include <assert.h>
 
+
+void Spin(int time)
+{
+    struct timeval start, end;
+    gettimeofday(&start, NULL);
+    gettimeofday(&end, NULL);
+    while (end.tv_sec - start.tv_sec < time) {
+        gettimeofday(&end, NULL);
+    }
+}
+
 int main (int argc, char *argv[])
 {
     if (argc != 2) {
